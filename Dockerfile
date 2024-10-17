@@ -1,6 +1,6 @@
 FROM openjdk:17
 
-# Define el directorio de trabajo dentro del contenedor
+# Define el directorio de trabajo dentro del contenedor uwu
 WORKDIR /app
 
 # Copia el archivo JAR generado en el directorio target al contenedor
