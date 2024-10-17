@@ -1,0 +1,16 @@
+server:
+  port: 8080  # Asegúrate de que este puerto esté disponible
+
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://ep-shiny-king-a48z6und.us-east-1.aws.neon.tech/AS222BD?sslmode=require
+    username: AS222BD_owner
+    password: 9RriVyP7cWZG
+
+
+
+
+# sdk install java 17.0.11-jbr
+
+# mvn clean install -DskipTests
+# mvn spring-boot:run
