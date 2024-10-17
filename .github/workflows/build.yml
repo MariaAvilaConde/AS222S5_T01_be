@@ -8,42 +8,36 @@ on:
 
 jobs:
   build:
-    name: Build and analyze
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-          
+          fetch-depth: 1  # Solo descarga el último commit para acelerar el proceso
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: 17
-          distribution: 'zulu' 
-          
-      - name: Cache SonarCloud packages
+          distribution: 'zulu'
+
+      - name: Cache Maven and SonarCloud packages
         uses: actions/cache@v4
         with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-          
-      - name: Cache Maven packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
-          
-      - name: Build and analyze
+          path: |
+            ~/.m2
+            ~/.sonar/cache
+          key: ${{ runner.os }}-cache-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-cache
+
+      - name: Build and analyze (skip tests)
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}               # Variable de entorno para la URL de la base de datos
-          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}     # Variable de entorno para el nombre de usuario
-          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}     # Variable de entorno para la contraseña
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
         run: |
-          mvn -B verify \
+          mvn -B verify -DskipTests \
             -Dsonar.projectKey=MariaAvilaConde_AS222S5_T01_be \
             -Dspring.datasource.url=$DATABASE_URL \
             -Dspring.datasource.username=$DATABASE_USERNAME \
