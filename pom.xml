@@ -17,17 +17,16 @@
 	<properties>
 		<java.version>17</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<sonar.organization>mariaavilaconde</sonar.organization>
-  		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<sonar.organization>lizbetarias</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 
 	<dependencies>
-
-		<!-- Spring Boot Starter WebFlux -->
+		<!-- Spring Boot Starter Web para MVC -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webflux</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<!-- Spring Data R2DBC Starter -->
@@ -70,22 +69,21 @@
 			<version>1.6.0</version>
 		</dependency>
 
-		<!-- Azure OpenAI SDK (optional) -->
+		<!-- Azure OpenAI SDK -->
 		<dependency>
 			<groupId>com.azure</groupId>
 			<artifactId>azure-ai-openai</artifactId>
 			<version>1.0.0-beta.2</version>
 		</dependency>
 
-		<!-- Springdoc OpenAPI for WebFlux -->
+		<!-- Springdoc OpenAPI for WebFlux (opcional si usas Web MVC) -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
 			<version>2.2.0</version>
 		</dependency>
 
-
-		<!-- Reactor Test for reactive programming testing -->
+		<!-- Reactor Test para pruebas de programación reactiva -->
 		<dependency>
 			<groupId>io.projectreactor</groupId>
 			<artifactId>reactor-test</artifactId>
@@ -99,6 +97,8 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+
 
 	<build>
 		<plugins>

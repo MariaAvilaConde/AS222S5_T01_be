@@ -1,6 +1,5 @@
 package pe.edu.vallegrande.OpenIA.controller;
 
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -52,7 +51,7 @@ public class ChatGptController {
     public Mono<ResponseEntity<Void>> deleteQuery(
             @Parameter(description = "ID de la consulta a eliminar") @PathVariable Long id) {
         return azureOpenAiService.deleteQuery(id)
-                .then(Mono.just(ResponseEntity.ok().build())) // Respuesta exitosa
+                .then(Mono.just(ResponseEntity.ok().<Void>build())) // Respuesta exitosa
                 .onErrorResume(e -> Mono.just(ResponseEntity.notFound().build())); // Respuesta en caso de no encontrar la consulta
     }
 
@@ -76,4 +75,3 @@ public class ChatGptController {
                 .switchIfEmpty(Flux.just(ResponseEntity.noContent().build())); // Respuesta si no hay consultas
     }
 }
-
