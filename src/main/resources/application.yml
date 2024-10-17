@@ -1,16 +1,12 @@
 server:
-  port: 8080  # Asegúrate de que este puerto esté disponible
+  port: 8085 
 
 spring:
   r2dbc:
-    url: r2dbc:postgresql://ep-shiny-king-a48z6und.us-east-1.aws.neon.tech/AS222BD?sslmode=require
-    username: AS222BD_owner
-    password: 9RriVyP7cWZG
-
-
-
+      url: ${DATABASE_URL}               # Variable de entorno para la URL de la base de datos
+      username: ${DATABASE_USERNAME}     # Variable de entorno para el nombre de usuario
+      password: ${DATABASE_PASSWORD}   
 
 # sdk install java 17.0.11-jbr
-
 # mvn clean install -DskipTests
 # mvn spring-boot:run
