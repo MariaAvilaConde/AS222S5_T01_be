@@ -17,7 +17,7 @@ EXPOSE 8085
 # Comando para ejecutar la aplicación
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
-# Líneas comentadas que pueden ser útiles para referencia futura:
+# Líneas comentadas que pueden ser útiles para referencia futura: loa
 #COPY target/*.jar app.jar
 #EXPOSE 8080
 #ENTRYPOINT [ "java","-jar","app.jar" ]
