@@ -43,3 +43,5 @@ jobs:
             -Dspring.datasource.username=$DATABASE_USERNAME \
             -Dspring.datasource.password=$DATABASE_PASSWORD \
             org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+
+#hola
